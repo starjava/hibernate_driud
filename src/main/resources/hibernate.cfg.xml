@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 连接池的类型 com.alibaba.druid.support.hibernate.DruidConnectionProvider -->
+		<property name="hibernate.connection.provider_class">com.alibaba.druid.support.hibernate.DruidConnectionProvider</property>
+		<property name="hibernate.connection.driverClassName">com.mysql.jdbc.Driver</property>
+		<property name="username">root</property>
+		<property name="password">123456</property>
+		<property name="url">jdbc:mysql://127.0.0.1:3306/test</property>
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize">10</property>
+		<property name="minIdle">10</property>
+		<property name="maxActive">20</property>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait">60000</property>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis">60000</property>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" >300000</property>
+		<!-- 记录慢SQL，超过5秒就记录下来 和SQL合并配置 ,druid.stat.mergeSql=true -->
+		<property name="connectionProperties" >druid.stat.slowSqlMillis=5000</property>
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements">true</property>
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters">stat,log4j,wall</property>
+	</session-factory>
+</hibernate-configuration> 
